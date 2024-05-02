@@ -1,0 +1,27 @@
+
+spring:
+  datasource:
+    url:  jdbc:mysql://127.0.0.1:3306/binding_of_planner_dev_db?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+  port: 8080
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace
