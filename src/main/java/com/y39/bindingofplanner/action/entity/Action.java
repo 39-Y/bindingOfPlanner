@@ -7,6 +7,8 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -37,5 +39,15 @@ public class Action extends BaseEntity {
 
     @Column(name = "do_end_date")
     private LocalDateTime doEndDate;
+
+    @OneToMany(mappedBy = "action", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OrderBy("createDate")
+    private List<ActionStackHistory> actionStackHistories = new ArrayList<>();
+
+    @OneToMany(mappedBy = "parentAction", orphanRemoval = true)
+    private List<ActionRelation> parentAction = new ArrayList<>();
+
+    @OneToMany(mappedBy = "childAction", orphanRemoval = true)
+    private List<ActionRelation> chileAction = new ArrayList<>();
 
 }

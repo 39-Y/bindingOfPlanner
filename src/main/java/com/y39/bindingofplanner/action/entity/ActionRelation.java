@@ -8,16 +8,18 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "action_stack_history")
-public class ActionStackHistory extends BaseEntity {
+@Table(name = "action_relation")
+public class ActionRelation extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "parent_action_id")
+    private Action parentAction;
 
     @ManyToOne
-    @JoinColumn(name = "action_id")
-    private Action action;
+    @JoinColumn(name = "child_action")
+    private Action childAction;
 
 }
