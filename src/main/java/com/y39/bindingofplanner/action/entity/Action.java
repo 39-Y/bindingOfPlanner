@@ -1,5 +1,7 @@
 package com.y39.bindingofplanner.action.entity;
 
+import com.y39.bindingofplanner.action.util.QuestType;
+import com.y39.bindingofplanner.action.util.QuestTypeConverter;
 import com.y39.bindingofplanner.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -45,9 +47,16 @@ public class Action extends BaseEntity {
     private List<ActionStackHistory> actionStackHistories = new ArrayList<>();
 
     @OneToMany(mappedBy = "parentAction", orphanRemoval = true)
-    private List<ActionRelation> parentAction = new ArrayList<>();
+    private List<ActionRelation> childActions = new ArrayList<>();
 
     @OneToMany(mappedBy = "childAction", orphanRemoval = true)
-    private List<ActionRelation> chileAction = new ArrayList<>();
+    private List<ActionRelation> parentActions = new ArrayList<>();
+
+    @OneToMany(mappedBy = "action", orphanRemoval = true)
+    private List<ActionTag> actionTags = new ArrayList<>();
+
+    @Convert(converter = QuestTypeConverter.class)
+    private QuestType questType;
+
 
 }
