@@ -16,6 +16,7 @@ public class ActionSaveDto {
     private String content;
     private LocalDateTime doStartDate;
     private LocalDateTime doEndDate;
+    private LocalDateTime doneDate;
 
 //    static ActionSaveDto of(String json){
 //        String title;

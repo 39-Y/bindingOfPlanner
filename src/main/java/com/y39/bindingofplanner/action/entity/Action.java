@@ -1,5 +1,6 @@
 package com.y39.bindingofplanner.action.entity;
 
+import com.y39.bindingofplanner.action.dto.ActionSaveDto;
 import com.y39.bindingofplanner.action.util.QuestType;
 import com.y39.bindingofplanner.action.util.QuestTypeConverter;
 import com.y39.bindingofplanner.common.entity.BaseEntity;
@@ -59,4 +60,13 @@ public class Action extends BaseEntity {
     private QuestType questType;
 
 
+    public static Action toEntity(ActionSaveDto actionSaveDto) {
+        return Action.builder()
+                .title(actionSaveDto.getTitle())
+                .content(actionSaveDto.getContent())
+                .doStartDate(actionSaveDto.getDoStartDate())
+                .doEndDate(actionSaveDto.getDoEndDate())
+                .doneDate(actionSaveDto.getDoneDate())
+                .build();
+    }
 }
