@@ -1,7 +1,8 @@
 
 spring:
-  profiles:
-    active: dev
+  config:
+    activate:
+      on-profile: dev
   datasource:
     url:  jdbc:mysql://127.0.0.1:3306/binding_of_planner_dev_db?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
     username: root
@@ -28,4 +29,4 @@ logging:
           descriptor:
             sql: trace
 custom:
-  hi: nope
+  hi: hi
