@@ -15,7 +15,7 @@ public class QuestTypeConverter implements AttributeConverter<QuestType, String>
 
     @Override
     public QuestType convertToEntityAttribute(String dbData) {
-        if(dbData.isBlank()){
+        if(dbData == null || dbData.isBlank()){
             return null;
         }
         return QuestType.fromName(dbData);

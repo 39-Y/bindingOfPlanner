@@ -12,6 +12,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
@@ -39,7 +41,8 @@ class ActionRepositoryTest {
     @Test
     @DisplayName("Action List")
     void findAll(){
-        assertThat(actionRepository.findAll().size()).isEqualTo(9);
+        List<Action> actions = actionRepository.findAll();
+        assertThat(actions.size()).isEqualTo(9);
     }
 
 }

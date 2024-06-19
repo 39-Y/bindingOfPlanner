@@ -6,6 +6,7 @@ import com.y39.bindingofplanner.action.entity.Action;
 import com.y39.bindingofplanner.action.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,11 +26,9 @@ public class ActionService {
     }
 
 
+    @Transactional
     public List<ActionResDto> findActions(){
-        System.out.println(actionRepository.findAll() == null);
-        List<Action> actions = actionRepository.findAll();
-        System.out.println(actions);
-        return actions
+        return actionRepository.findAll()
                 .stream()
                 .map(Action::toResDto)
                 .collect(Collectors.toList());

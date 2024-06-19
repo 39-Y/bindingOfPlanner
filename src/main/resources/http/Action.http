@@ -2,6 +2,10 @@
 GET http://localhost:8080/api/v1/action/hi
 Accept: application/json
 
-### getActionList Hi
+### getActionList
 GET http://localhost:8080/api/v1/action/list
+Accept: application/json
+
+### getAction
+GET http://localhost:8080/api/v1/action/1
 Accept: application/json
