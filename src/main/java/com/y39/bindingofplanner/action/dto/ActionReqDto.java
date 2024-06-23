@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 public class ActionReqDto {
     private String title;
     private String content;
+    private boolean isDone;
     private LocalDateTime doStartDate;
     private LocalDateTime doEndDate;
     private LocalDateTime doneDate;
@@ -33,6 +34,8 @@ public class ActionReqDto {
 //                .build();
 //    }
     public Action toEntity() {
+        doneDate = isDone? LocalDateTime.now() : null;
+
         return Action.builder()
                 .title(getTitle())
                 .content(getContent())

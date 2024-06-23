@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class ActionResDto {
+    private long id;
     private String title;
     private String content;
     private LocalDateTime createDate;

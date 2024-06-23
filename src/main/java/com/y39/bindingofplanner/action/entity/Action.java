@@ -63,6 +63,7 @@ public class Action extends BaseEntity {
 
     public ActionResDto toResDto() {
         return ActionResDto.builder()
+                .id(getId())
                 .title(getTitle())
                 .content(getContent())
                 .doStartDate(getDoStartDate())
