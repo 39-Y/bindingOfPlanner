@@ -29,13 +29,13 @@ class ActionServiceTest {
         ActionReqDto actionReqDto = ActionReqDto.builder()
                 .title("테스트 액션")
                 .content("테스트 액션 내용")
-                .doStartDate(LocalDateTime.now())
                 .build();
         long id = actionService.create(actionReqDto).getId();
 
         Action action = actionService.findActionById(id);
 
         assertThat(action.getTitle()).isEqualTo("테스트 액션");
+        assertThat(action.getContent()).isEqualTo("테스트 액션 내용");
     }
 
     @DisplayName("Action List")

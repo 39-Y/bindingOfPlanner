@@ -1,4 +1,4 @@
-package com.y39.bindingofplanner.action.dto;
+package com.y39.bindingofplanner.goal.dto;
 
 import com.y39.bindingofplanner.action.entity.Action;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ActionReqDto {
+public class GoalReqDto {
+    private long id;
     private String title;
     private String content;
     private boolean isDone;

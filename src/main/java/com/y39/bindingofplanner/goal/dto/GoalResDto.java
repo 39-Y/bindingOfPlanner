@@ -1,6 +1,6 @@
-package com.y39.bindingofplanner.action.dto;
+package com.y39.bindingofplanner.goal.dto;
 
-import com.y39.bindingofplanner.action.entity.Action;
+import com.y39.bindingofplanner.action.util.QuestType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,13 +12,16 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ActionReqDto {
+public class GoalResDto {
+    private long id;
     private String title;
     private String content;
-    private boolean isDone;
+    private LocalDateTime createDate;
     private LocalDateTime doStartDate;
     private LocalDateTime doEndDate;
     private LocalDateTime doneDate;
+    private LocalDateTime lastModifiedDate;
+    private QuestType questType;
 
 //    static ActionSaveDto of(String json){
 //        String title;
@@ -33,13 +36,4 @@ public class ActionReqDto {
 //                .doEndDate(doEndDate)
 //                .build();
 //    }
-    public Action toEntity() {
-        doneDate = isDone? LocalDateTime.now() : null;
-
-        return Action.builder()
-                .title(getTitle())
-                .content(getContent())
-                .doneDate(getDoneDate())
-                .build();
-    }
 }

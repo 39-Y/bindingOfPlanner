@@ -15,10 +15,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ActionService {
     private final ActionRepository actionRepository;
-    private final ActionRelationRepository actionRelationRepository;
     private final ActionStackHistoryRepository actionStackHistoryRepository;
     private final ActionTagRepository actionTagRepository;
-    private final TagRepository tagRepository;
 
     public Action create(ActionReqDto actionReqDto){
         Action action = actionReqDto.toEntity();

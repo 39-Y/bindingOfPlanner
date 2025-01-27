@@ -1,5 +1,6 @@
-package com.y39.bindingofplanner.action.entity;
+package com.y39.bindingofplanner.goal.entity;
 
+import com.y39.bindingofplanner.action.entity.Action;
 import com.y39.bindingofplanner.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -9,19 +10,19 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "action_relation")
-public class ActionRelation extends BaseEntity {
+@Table(name = "goal_relation")
+public class GoalRelation extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "parent_action_id")
-    private Action parentAction;
+    @JoinColumn(name = "parent_goal_id")
+    private Goal parentGoal;
 
     @ManyToOne
-    @JoinColumn(name = "child_action_id")
-    private Action childAction;
+    @JoinColumn(name = "child_goal_id")
+    private Goal childGoal;
 
 }

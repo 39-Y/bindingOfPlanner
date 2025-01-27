@@ -1,25 +1,29 @@
-package com.y39.bindingofplanner.action.entity;
+package com.y39.bindingofplanner.goal.entity;
 
 import com.y39.bindingofplanner.common.entity.BaseEntity;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "tag")
-public class Tag extends BaseEntity {
+@Table(name = "goal_tag")
+public class GoalTag extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "goal_id")
+    private Goal goal;
 
     @Column(name = "name", nullable = false)
     @JdbcTypeCode(SqlTypes.VARCHAR)
@@ -33,8 +37,5 @@ public class Tag extends BaseEntity {
     @Column(name = "font_color", length = 7)
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private String fontColor;
-
-    @OneToMany(mappedBy = "tag", orphanRemoval = true)
-    private List<ActionTag> actionTags = new ArrayList<>();
 
 }
