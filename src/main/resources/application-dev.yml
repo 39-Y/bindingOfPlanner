@@ -18,6 +18,8 @@ server:
     encoding:
       charset: UTF-8
   port: 8080
+  host:
+    front: http://localhost:3000/
 logging:
   level:
     org:
@@ -25,5 +27,5 @@ logging:
         type:
           descriptor:
             sql: trace
-custom:
-  hi: hi
+    root: debug
+    com.y39: debug

@@ -1,5 +1,7 @@
 package com.y39.bindingofplanner.action.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.y39.bindingofplanner.action.entity.Action;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,34 +14,24 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ActionReqDto {
     private String title;
+    private long id;
     private String content;
+    @JsonProperty("isDone")
     private boolean isDone;
-    private LocalDateTime doStartDate;
-    private LocalDateTime doEndDate;
+    private LocalDateTime planDate;
     private LocalDateTime doneDate;
 
-//    static ActionSaveDto of(String json){
-//        String title;
-//        String content;
-//        String doStartDate;
-//        String doEndDate;
-//
-//        return ActionSaveDto.builder()
-//                .title(title)
-//                .content(content)
-//                .doStartDate(doStartDate)
-//                .doEndDate(doEndDate)
-//                .build();
-//    }
     public Action toEntity() {
         doneDate = isDone? LocalDateTime.now() : null;
 
         return Action.builder()
                 .title(getTitle())
                 .content(getContent())
-                .doneDate(getDoneDate())
+                .planDate(getPlanDate())
+                .doneDate(doneDate)
                 .build();
     }
 }

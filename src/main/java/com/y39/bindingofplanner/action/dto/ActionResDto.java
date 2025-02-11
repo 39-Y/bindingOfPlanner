@@ -16,24 +16,9 @@ public class ActionResDto {
     private long id;
     private String title;
     private String content;
+    private LocalDateTime planDate;
     private LocalDateTime createDate;
-    private LocalDateTime doStartDate;
-    private LocalDateTime doEndDate;
     private LocalDateTime doneDate;
     private LocalDateTime lastModifiedDate;
-    private QuestType questType;
 
-//    static ActionSaveDto of(String json){
-//        String title;
-//        String content;
-//        String doStartDate;
-//        String doEndDate;
-//
-//        return ActionSaveDto.builder()
-//                .title(title)
-//                .content(content)
-//                .doStartDate(doStartDate)
-//                .doEndDate(doEndDate)
-//                .build();
-//    }
 }

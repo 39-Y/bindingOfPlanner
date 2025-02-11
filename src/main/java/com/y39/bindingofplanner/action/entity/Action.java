@@ -20,6 +20,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
 @Builder
 @Table(name = "action")
 public class Action extends BaseEntity {
