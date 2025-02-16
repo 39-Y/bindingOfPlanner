@@ -8,9 +8,10 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
+@NoArgsConstructor
 @Getter
 public class ResponseResult {
-    private ObjectMapper objectMapper = new ObjectMapper();
+    private ObjectMapper objectMapper;
     private boolean isSuccess;
     private String message;
     private String errorMessage;
@@ -20,7 +21,8 @@ public class ResponseResult {
     private Map<String, Object> attribute;
 
 
-    private ResponseResult(){
+    private ResponseResult(ObjectMapper objectMapper){
+        this.objectMapper = objectMapper;
         this.timestamp = LocalDateTime.now();
         this.attribute = new HashMap<>();
     }
@@ -30,14 +32,14 @@ public class ResponseResult {
         objectMapper.registerModule(new JavaTimeModule());
         return objectMapper.writeValueAsString(this);
     }
-    static public ResponseResultBuilder builder(){
-        return new ResponseResultBuilder();
+    static public ResponseResultBuilder builder(ObjectMapper objectMapper){
+        return new ResponseResultBuilder(objectMapper);
     }
 
     public static class ResponseResultBuilder{
         private final ResponseResult rr;
-        public ResponseResultBuilder(){
-            this.rr = new ResponseResult();
+        public ResponseResultBuilder(ObjectMapper objectMapper){
+            this.rr = new ResponseResult(objectMapper);
         }
         public ResponseResultBuilder data(Object data){
             rr.data = data;

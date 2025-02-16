@@ -15,24 +15,25 @@ import org.springframework.web.bind.annotation.*;
 @Log4j2
 public class ActionController {
     private final ActionService actionService;
+    private final ObjectMapper objectMapper;
 
     @CrossOrigin(origins = "*")
     @GetMapping("/list")
     public String getActionList(){
-        return ResponseResult.builder().data(actionService.findActions()).build().mapper();
+        return ResponseResult.builder(objectMapper).data(actionService.findActions()).build().mapper();
     }
 
     @CrossOrigin(origins = "*")
     @GetMapping("/{id}")
     public String getAction(@PathVariable Long id){
-        return ResponseResult.builder().data(actionService.findActionById(id)).build().mapper();
+        return ResponseResult.builder(objectMapper).data(actionService.findActionById(id)).build().mapper();
 
     }
 
     @CrossOrigin(origins = "*")
     @PostMapping("/list")
     public String saveActionList(@RequestBody ActionCacheDto actionCacheDto) throws JsonProcessingException {
-        return ResponseResult.builder().result(actionService.saveActionCache(actionCacheDto)).build().mapper();
+        return ResponseResult.builder(objectMapper).result(actionService.saveActionCache(actionCacheDto)).build().mapper();
 
     }
 

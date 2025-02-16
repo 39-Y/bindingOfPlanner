@@ -43,4 +43,15 @@ class ActionRepositoryTest {
         assertThat(actions.size()).isEqualTo(9);
     }
 
+    @Test
+    @DisplayName("Action Save")
+    void save(){
+        Action action = Action.builder()
+                .title("test")
+                .content("test content").build();
+        actionRepository.save(action);
+        List<Action> actions = actionRepository.findAll();
+        assertThat(actions.size()).isEqualTo(10);
+    }
+
 }
