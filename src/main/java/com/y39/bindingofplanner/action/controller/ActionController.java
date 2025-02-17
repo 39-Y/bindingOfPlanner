@@ -1,8 +1,41 @@
 package com.y39.bindingofplanner.action.controller;
 
-import org.springframework.stereotype.Controller;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.y39.bindingofplanner.action.dto.ActionCacheDto;
+import com.y39.bindingofplanner.action.service.ActionService;
+import com.y39.bindingofplanner.common.util.ResponseResult;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
+@RequestMapping("/api/v1/action")
+@RequiredArgsConstructor
+@Log4j2
 public class ActionController {
+    private final ActionService actionService;
+    private final ObjectMapper objectMapper;
+
+    @CrossOrigin(origins = "*")
+    @GetMapping("/list")
+    public String getActionList(){
+        return ResponseResult.builder(objectMapper).data(actionService.findActions()).build().mapper();
+    }
+
+    @CrossOrigin(origins = "*")
+    @GetMapping("/{id}")
+    public String getAction(@PathVariable Long id){
+        return ResponseResult.builder(objectMapper).data(actionService.findActionById(id)).build().mapper();
+
+    }
+
+    @CrossOrigin(origins = "*")
+    @PostMapping("/list")
+    public String saveActionList(@RequestBody ActionCacheDto actionCacheDto) throws JsonProcessingException {
+        return ResponseResult.builder(objectMapper).result(actionService.saveActionCache(actionCacheDto)).build().mapper();
+
+    }
+
 
 }
