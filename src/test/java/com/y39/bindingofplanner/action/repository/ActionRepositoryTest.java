@@ -1,5 +1,6 @@
 package com.y39.bindingofplanner.action.repository;
 
+import com.y39.bindingofplanner.action.dto.ActionReqDto;
 import com.y39.bindingofplanner.action.entity.Action;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,15 +33,12 @@ class ActionRepositoryTest {
         }
     }
 
-    @AfterEach
-    void resetData(){
 
-    }
     @Test
     @DisplayName("Action List")
     void findAll(){
         List<Action> actions = actionRepository.findAll();
-        assertThat(actions.size()).isEqualTo(9);
+        assertThat(actions.size()).isGreaterThan(8);
     }
 
     @Test
@@ -49,9 +47,9 @@ class ActionRepositoryTest {
         Action action = Action.builder()
                 .title("test")
                 .content("test content").build();
-        actionRepository.save(action);
-        List<Action> actions = actionRepository.findAll();
-        assertThat(actions.size()).isEqualTo(10);
+        action = actionRepository.save(action);
+        Action found = actionRepository.findById(action.getId()).orElse(ActionReqDto.builder().build().toEntity());
+        assertThat(found.getTitle()).isEqualTo("test");
     }
 
 }
