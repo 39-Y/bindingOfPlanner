@@ -1,7 +1,5 @@
 
 spring:
-  profiles:
-    active: prod
   datasource:
     url:  jdbc:mysql://127.0.0.1:3306/binding_of_planner_dev_db?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
     username: root
@@ -20,6 +18,8 @@ server:
     encoding:
       charset: UTF-8
   port: 8080
+  host:
+    front: http://localhost:3000/
 logging:
   level:
     org:
@@ -27,5 +27,5 @@ logging:
         type:
           descriptor:
             sql: trace
-custom:
-  hi: nope
+    root: debug
+    com.y39: debug

@@ -16,5 +16,8 @@ public class ActionStackHistory extends BaseEntity {
     private Long id;
 
 
+    @ManyToOne
+    @JoinColumn(name = "action_id")
+    private Action action;
 
 }
